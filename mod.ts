@@ -1,4 +1,4 @@
-import { decode } from "https://denopkg.com/chiefbiiko/std-encoding/mod.ts";
+import { decode } from "https://denopkg.com/chiefbiiko/std-encoding@v1.0.0/mod.ts";
 
 export const BYTES: number = 16;
 
@@ -92,7 +92,7 @@ function cmn(
   b: number,
   x: number,
   s: number,
-  t: number
+  t: number,
 ): number {
   a = add32(add32(a, q), add32(x, t));
   return add32((a << s) | (a >>> (32 - s)), b);
@@ -105,7 +105,7 @@ function ff(
   d: number,
   x: number,
   s: number,
-  t: number
+  t: number,
 ): number {
   return cmn((b & c) | (~b & d), a, b, x, s, t);
 }
@@ -117,7 +117,7 @@ function gg(
   d: number,
   x: number,
   s: number,
-  t: number
+  t: number,
 ): number {
   return cmn((b & d) | (c & ~d), a, b, x, s, t);
 }
@@ -129,7 +129,7 @@ function hh(
   d: number,
   x: number,
   s: number,
-  t: number
+  t: number,
 ): number {
   return cmn(b ^ c ^ d, a, b, x, s, t);
 }
@@ -141,7 +141,7 @@ function ii(
   d: number,
   x: number,
   s: number,
-  t: number
+  t: number,
 ): number {
   return cmn(c ^ (b | ~d), a, b, x, s, t);
 }
@@ -150,8 +150,7 @@ function md5blk(s: string): number[] {
   let md5blks: number[] = [];
 
   for (let i: number = 0; i < 64; i += 4) {
-    md5blks[i >> 2] =
-      s.charCodeAt(i) +
+    md5blks[i >> 2] = s.charCodeAt(i) +
       (s.charCodeAt(i + 1) << 8) +
       (s.charCodeAt(i + 2) << 16) +
       (s.charCodeAt(i + 3) << 24);
@@ -203,7 +202,7 @@ function writeLE(v: number, buf: Uint8Array, offset: number): void {
 export function md5(
   msg: string | Uint8Array,
   inputEncoding?: string,
-  outputEncoding?: string
+  outputEncoding?: string,
 ): string | Uint8Array {
   if (msg instanceof Uint8Array) {
     msg = decode(msg, inputEncoding) as string;
