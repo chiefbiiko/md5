@@ -1,4 +1,4 @@
-import { decode } from "https://denopkg.com/chiefbiiko/std-encoding@v1.0.0/mod.ts";
+import { decode } from "https://denopkg.com/chiefbiiko/std-encoding@v1.1.0/mod.ts";
 
 export const BYTES: number = 16;
 
